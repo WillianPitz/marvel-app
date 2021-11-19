@@ -1,14 +1,6 @@
 import styled, { css } from "styled-components";
 import { ComicsPropsStyled, ListPropsStyled } from "./ListTypes";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #202020;
-  min-height: 100vh;
-  overflow: hidden;
-`;
-
 export const ArrowIcon = styled.div`
   position: absolute;
   width: 40px;
@@ -50,7 +42,7 @@ export const CharacterRow = styled.div<ListPropsStyled>`
   display: flex;
   gap: 20px;
   overflow-x: scroll;
-  margin-top: 80px;
+  margin-top: 40px;
   padding: 20px;
   transition: all ease 0.5s;
 
@@ -117,6 +109,29 @@ export const ComicsImage = styled.div`
   }
 `;
 
+const mobile = css`
+  ${ComicsImage} {
+    img {
+      height: 100px;
+    }
+  }
+  ${ArrowIcon} {
+    height: 220px;
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #202020;
+  min-height: 100vh;
+  overflow: hidden;
+
+  @media screen and (max-width: 540px) and (max-height: 719px) {
+    ${mobile}
+  }
+`;
+
 export const ComicsDescription = styled.div`
   display: flex;
   flex-direction: column;
@@ -170,7 +185,7 @@ export const Header = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 400px;
+  width: 320px;
   height: 35px;
   border-radius: 20px;
   text-indent: 20px;
@@ -181,14 +196,11 @@ export const Input = styled.input`
 
 export const FooterButton = styled.div`
   display: flex;
-  justify-content: end;
-  position: absolute;
-  padding: 20px;
-  right: 0;
-  bottom: 0;
+  justify-content: center;
+  padding-top: 20px;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<ListPropsStyled>`
   padding: 20px;
   background: ${({ theme }) => theme.colors.buttonRed};
   border: 0;
@@ -197,6 +209,12 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: 600;
   transition: all ease 0.2s;
+
+  ${({ loading }) =>
+    loading &&
+    css`
+      display: none;
+    `}
 
   :hover {
     opacity: 0.8;

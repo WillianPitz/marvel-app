@@ -13,7 +13,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px;
-  width: 30vw;
   background: white;
   border-radius: 20px;
   background: #202020;

@@ -12,6 +12,26 @@ interface toastProps {
   message: string;
 }
 
+interface toastPromiseProps {
+  promiseName: Promise<any>;
+  pendingMessage: string;
+  successMessage: string;
+  errorMessage: string;
+}
+
+export const showToastPromise = ({
+  promiseName,
+  pendingMessage,
+  successMessage,
+  errorMessage,
+}: toastPromiseProps) => {
+  toastify.promise(promiseName, {
+    pending: pendingMessage,
+    success: successMessage,
+    error: errorMessage,
+  });
+};
+
 export const showToast = ({ type, message }: toastProps) => {
   switch (type) {
     case "success":

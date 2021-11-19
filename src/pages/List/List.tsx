@@ -164,6 +164,7 @@ const List: React.FC = () => {
           onClick={() => {
             handleOpenEmailModal();
           }}
+          loading={loading}
         >
           Send by email
         </S.Button>

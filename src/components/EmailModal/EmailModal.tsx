@@ -14,7 +14,7 @@ import * as S from "./styles";
 import Input from "../Input/Input";
 import EmailTemplate from "../EmailTemplate/EmailTemplate";
 
-import { showToast } from "../Toast/Toast";
+import { showToastPromise } from "../Toast/Toast";
 import { Form, Formik, FormikValues } from "formik";
 import { EmailModalSchema } from "../../schemas";
 
@@ -31,7 +31,7 @@ const EmailModal = ({
   };
 
   const handleSubmit = (values: FormikValues) => {
-    send(
+    const emailPromise = send(
       process.env.REACT_APP_EMAIL_SERVICE as string,
       process.env.REACT_APP_EMAIL_TEMPLATEID as string,
       {
@@ -41,15 +41,15 @@ const EmailModal = ({
         message: renderToStaticMarkup(<EmailTemplate selecteds={selecteds} />),
       },
       process.env.REACT_APP_EMAIL_USER_ID
-    ).then(
-      () => {
-        showToast({ type: "success", message: "Email successfully sent!" });
-        closeModal(false);
-      },
-      () => {
-        showToast({ type: "error", message: "Failed to send email!" });
-      }
-    );
+    ).then(() => {
+      showToastPromise({
+        promiseName: emailPromise,
+        successMessage: "Email successfully sent!",
+        pendingMessage: "Sending email...",
+        errorMessage: "Failed to send email!",
+      });
+      closeModal(false);
+    });
   };
 
   return (

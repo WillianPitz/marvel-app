@@ -197,4 +197,5 @@ export type ListPropsStyled = {
   showModal?: boolean;
   showEmailModal?: boolean;
   inputState?: string;
+  loading?: boolean;
 };
