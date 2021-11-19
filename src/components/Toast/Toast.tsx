@@ -20,6 +20,9 @@ export const showToast = ({ type, message }: toastProps) => {
     case "error":
       toastify.error(message);
       break;
+    case "info":
+      toastify.info(message);
+      break;
     default:
       break;
   }

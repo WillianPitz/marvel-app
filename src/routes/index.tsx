@@ -1,13 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Routes as Router } from "react-router-dom";
+
+import { BrowserRouter, Routes as Router, Route } from "react-router-dom";
 
 import List from "../pages/List/List";
 
 export default function Routes() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Router>
-        <Route path="/marvel-app/home" element={<List />} />
+        <Route path="/" element={<List />} />
       </Router>
     </BrowserRouter>
   );

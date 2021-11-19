@@ -42,7 +42,11 @@ const List: React.FC = () => {
   };
 
   const handleOpenEmailModal = () => {
-    setShowEmailModal(!showEmailModal);
+    if (selecteds.length > 0) {
+      setShowEmailModal(!showEmailModal);
+    } else {
+      showToast({ type: "info", message: "Choose a comic first!" });
+    }
   };
 
   const handleLeftArrow = () => {
