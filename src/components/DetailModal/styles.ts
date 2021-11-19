@@ -1,24 +1,4 @@
-import styled from "styled-components";
-
-export const Background = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  width: 50vw;
-  background: white;
-  border-radius: 20px;
-  background: #202020;
-  box-shadow: 0px 0px 10px 1px ${({ theme }) => theme.colors.white};
-`;
+import styled, { css } from "styled-components";
 
 export const Title = styled.div`
   display: flex;
@@ -62,6 +42,39 @@ export const Image = styled.img`
   height: 500px;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  background: white;
+  border-radius: 20px;
+  background: #202020;
+  box-shadow: 0px 0px 10px 1px ${({ theme }) => theme.colors.white};
+`;
+
+const mobile = css`
+  ${Image} {
+    display: none;
+  }
+  ${Container} {
+    width: 95%;
+  }
+`;
+
+export const Background = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  @media screen and (max-width: 540px) and (max-height: 719px) {
+    ${mobile}
+  }
+`;
+
 export const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,6 +93,9 @@ export const TextInfo = styled.p`
   font-size: 16px;
   font-weight: 400;
   color: #e7e7e7;
+  display: flex;
+  align-items: center;
+  text-align: center;
 `;
 export const FirstRow = styled.div`
   display: flex;

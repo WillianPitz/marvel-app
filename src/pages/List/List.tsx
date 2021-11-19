@@ -83,7 +83,7 @@ const List: React.FC = () => {
   };
 
   return (
-    <S.Container>
+    <S.Container showModal={showModal} showEmailModal={showEmailModal}>
       <S.Header>
         <S.Logo src={MarvelLogo} alt="marvel logo" />
         <S.Input
@@ -164,6 +164,7 @@ const List: React.FC = () => {
           onClick={() => {
             handleOpenEmailModal();
           }}
+          showEmailModal={showEmailModal}
           loading={loading}
         >
           Send by email

@@ -72,18 +72,6 @@ export const CharacterRow = styled.div<ListPropsStyled>`
       box-shadow: -2px 2px 0px 2px ${({ theme }) => theme.colors.red};
     }
   }
-
-  ${(props) =>
-    props.showModal === true &&
-    css`
-      opacity: 0.2;
-    `}
-
-  ${(props) =>
-    props.showEmailModal === true &&
-    css`
-      opacity: 0.2;
-    `}
 `;
 
 export const Comics = styled.div<ComicsPropsStyled>`
@@ -117,18 +105,6 @@ const mobile = css`
   }
   ${ArrowIcon} {
     height: 220px;
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #202020;
-  min-height: 100vh;
-  overflow: hidden;
-
-  @media screen and (max-width: 540px) and (max-height: 719px) {
-    ${mobile}
   }
 `;
 
@@ -218,5 +194,35 @@ export const Button = styled.button<ListPropsStyled>`
 
   :hover {
     opacity: 0.8;
+  }
+`;
+
+const opacityBackground = css`
+  ${Input} {
+    opacity: 0.2;
+  }
+  ${CharacterRow} {
+    opacity: 0.2;
+  }
+  ${Button} {
+    opacity: 0.2;
+  }
+`;
+
+export const Container = styled.div<ListPropsStyled>`
+  display: flex;
+  flex-direction: column;
+  background-color: #202020;
+  min-height: 100vh;
+  overflow: hidden;
+
+  ${(props) =>
+    (props.showEmailModal || props.showModal) &&
+    css`
+      ${opacityBackground}
+    `}
+
+  @media screen and (max-width: 540px) and (max-height: 719px) {
+    ${mobile}
   }
 `;
